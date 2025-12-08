@@ -23,6 +23,7 @@ def part_1(data_matrix):
 
     directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
 
+    count = 0
     for r in range(rows):
         for c in range(cols):
             if data_matrix[r][c] == "@":
@@ -38,13 +39,8 @@ def part_1(data_matrix):
 
                 if unreachable_count < 4:
                     data_matrix[r][c] = "X"
+                    count += 1
 
-    # Apply after counting everything
-    count = 0
-    for row in data_matrix:
-        for col in row:
-            if col == "X":
-                count += 1
     print(count)
 
 
