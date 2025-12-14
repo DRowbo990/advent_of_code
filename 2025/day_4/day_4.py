@@ -44,6 +44,41 @@ def part_1(data_matrix):
     print(count)
 
 
+def part_2(data_matrix):
+    rows = len(data_matrix)
+    cols = len(data_matrix[0])
+
+    directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+
+    xcount_total = 0
+    while True:
+        holder = []
+        for r in range(rows):
+            for c in range(cols):
+                if data_matrix[r][c] == "@":
+                    unreachable_count = 0
+
+                    for dr, dc in directions:
+                        nr = r + dr
+                        nc = c + dc
+                        if 0 <= nr < rows and 0 <= nc < cols:
+                            # Check if the neighboring cell is "@" so we dont miss already counted slots
+                            if data_matrix[nr][nc] == "@":
+                                unreachable_count += 1
+
+                    if unreachable_count < 4:
+                        holder.append((r, c))
+        # print(holder)
+        if holder == []:
+            print(xcount_total)
+            break
+        for r, c in holder:
+            data_matrix[r][c] = "."
+            xcount_total += 1
+
+
 if __name__ == "__main__":
     data_matrix = file_to_2d_matrix("input.txt")
     part_1(data_matrix)
+    data_matrix = file_to_2d_matrix("input.txt")
+    part_2(data_matrix)
