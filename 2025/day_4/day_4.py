@@ -34,11 +34,10 @@ def part_1(data_matrix):
                     nc = c + dc
                     if 0 <= nr < rows and 0 <= nc < cols:
                         # Check if the neighboring cell is "@" or "X" so we dont miss already counted slots
-                        if data_matrix[nr][nc] == "@" or data_matrix[nr][nc] == "X":
+                        if data_matrix[nr][nc] == "@":
                             unreachable_count += 1
 
                 if unreachable_count < 4:
-                    data_matrix[r][c] = "X"
                     count += 1
 
     print(count)
@@ -80,5 +79,4 @@ def part_2(data_matrix):
 if __name__ == "__main__":
     data_matrix = file_to_2d_matrix("input.txt")
     part_1(data_matrix)
-    data_matrix = file_to_2d_matrix("input.txt")
     part_2(data_matrix)
